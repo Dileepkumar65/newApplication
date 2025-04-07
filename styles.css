@@ -563,3 +563,11 @@ body {
     width: 90%;
     max-height: 90vh;
 }
+
+/* Enhanced spacing for roadmap buttons */
+.roadmaps-list li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
