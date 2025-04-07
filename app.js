@@ -78,6 +78,11 @@ function loadModuleTopics(moduleId) {
             
             // Show topic details
             showTopicDetails(topic.id);
+            
+            // Collapse sidebar on mobile when a topic is selected
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
         });
         
         topicsList.appendChild(topicItem);
@@ -161,6 +166,11 @@ function createSubtopicCard(subtopic) {
         
         // Show the topic details
         showTopicDetails(subtopic.id);
+        
+        // Collapse sidebar on mobile when a subtopic is selected
+        if (window.innerWidth <= 768) {
+            toggleSidebar();
+        }
     });
     
     return card;
