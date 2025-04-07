@@ -1,16 +1,28 @@
+// Wait for the DOM to be fully loaded before executing code
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize the app
+    console.log("DOM fully loaded and parsed");
+    
+    // Initialize the app by setting up event handlers and loading content
     setupEventListeners();
     loadMainModules();
+    
+    // Initially hide the topic content area until a topic is selected
+    const contentArea = document.getElementById('content-area');
+    contentArea.style.display = 'none';
 });
 
 // Load main modules in the sidebar
 function loadMainModules() {
+    console.log("Loading main modules to sidebar");
     const modules = getTopicsByParentId(null);
+    console.log("Modules:", modules);
+    
     const sidebarModules = document.getElementById('sidebar-modules');
     
+    // Clear the sidebar before adding modules
     sidebarModules.innerHTML = '';
     
+    // Add each module to the sidebar
     modules.forEach(module => {
         const moduleElement = document.createElement('div');
         moduleElement.className = 'sidebar-module';
@@ -53,10 +65,11 @@ function loadTopicsDropdown(moduleId) {
         dropdown.appendChild(option);
     });
     
+    // Make the dropdown visible
     dropdown.style.display = 'block';
     dropdownContainer.style.display = 'block';
     
-    // Show the dropdown
+    // Add change event handler to the dropdown
     dropdown.addEventListener('change', function() {
         showTopicDetails(this.value);
     });
@@ -224,6 +237,8 @@ async function handleWebScraping(event) {
 
 // Setup event listeners
 function setupEventListeners() {
+    console.log("Setting up event listeners");
+    
     // Search button
     document.getElementById('search-button').addEventListener('click', performSearch);
     
