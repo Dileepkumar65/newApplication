@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the app by setting up event handlers and loading content
     setupEventListeners();
     loadMainModules();
-    
-    // Initially hide the topic content area until a topic is selected
-    const contentArea = document.getElementById('content-area');
-    contentArea.style.display = 'none';
 });
 
 // Load main modules in the sidebar
@@ -17,80 +13,96 @@ function loadMainModules() {
     const modules = getTopicsByParentId(null);
     console.log("Modules:", modules);
     
-    const sidebarModules = document.getElementById('sidebar-modules');
+    const modulesList = document.getElementById('modules-list');
     
-    // Clear the sidebar before adding modules
-    sidebarModules.innerHTML = '';
+    // Clear the modules list before adding new ones
+    modulesList.innerHTML = '';
     
     // Add each module to the sidebar
     modules.forEach(module => {
-        const moduleElement = document.createElement('div');
-        moduleElement.className = 'sidebar-module';
-        moduleElement.setAttribute('data-id', module.id);
-        moduleElement.textContent = module.title;
+        const moduleItem = document.createElement('div');
+        moduleItem.className = 'sidebar-item';
+        moduleItem.setAttribute('data-id', module.id);
+        moduleItem.textContent = module.title;
         
-        moduleElement.addEventListener('click', function() {
-            // Mark the clicked module as active
-            document.querySelectorAll('.sidebar-module').forEach(el => {
+        moduleItem.addEventListener('click', function() {
+            // Mark the clicked module as active and deactivate others
+            document.querySelectorAll('.sidebar-item').forEach(el => {
                 el.classList.remove('active');
             });
             this.classList.add('active');
             
-            // Load topics dropdown for this module
-            loadTopicsDropdown(module.id);
+            // Load and display topics for this module
+            loadModuleTopics(module.id);
             
-            // Display the first topic in this module automatically
+            // Show the first topic automatically
             const topics = getTopicsByParentId(module.id);
             if (topics.length > 0) {
+                // Mark the first topic as active
+                setTimeout(() => {
+                    const firstTopicItem = document.querySelector(`.topic-item[data-id="${topics[0].id}"]`);
+                    if (firstTopicItem) {
+                        firstTopicItem.classList.add('active');
+                    }
+                }, 50);
+                
+                // Show the topic content
                 showTopicDetails(topics[0].id);
             }
         });
         
-        sidebarModules.appendChild(moduleElement);
+        modulesList.appendChild(moduleItem);
     });
 }
 
-// Load topics dropdown for the selected module
-function loadTopicsDropdown(moduleId) {
+// Load topics for the selected module in the sidebar
+function loadModuleTopics(moduleId) {
     const topics = getTopicsByParentId(moduleId);
-    const dropdown = document.getElementById('topic-dropdown');
-    const dropdownContainer = document.getElementById('topic-dropdown-container');
+    const topicsList = document.getElementById('topics-list');
+    const topicsSection = document.getElementById('topics-section');
     
-    dropdown.innerHTML = '';
+    // Clear the topics list before adding new ones
+    topicsList.innerHTML = '';
     
+    // Add each topic to the sidebar
     topics.forEach(topic => {
-        const option = document.createElement('option');
-        option.value = topic.id;
-        option.textContent = topic.title;
-        dropdown.appendChild(option);
+        const topicItem = document.createElement('div');
+        topicItem.className = 'topic-item';
+        topicItem.setAttribute('data-id', topic.id);
+        topicItem.textContent = topic.title;
+        
+        topicItem.addEventListener('click', function() {
+            // Mark the clicked topic as active and deactivate others
+            document.querySelectorAll('.topic-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Show the topic details
+            showTopicDetails(topic.id);
+        });
+        
+        topicsList.appendChild(topicItem);
     });
     
-    // Make the dropdown visible
-    dropdown.style.display = 'block';
-    dropdownContainer.style.display = 'block';
-    
-    // Add change event handler to the dropdown
-    dropdown.addEventListener('change', function() {
-        showTopicDetails(this.value);
-    });
+    // Display the topics section
+    topicsSection.style.display = 'block';
 }
 
-// Display topic details
+// Display topic details in the main content area
 function showTopicDetails(topicId) {
     const topic = getTopicById(topicId);
-    const contentArea = document.getElementById('content-area');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const topicView = document.getElementById('topic-view');
     const topicContent = document.getElementById('topic-content');
     const searchResults = document.getElementById('search-results');
     
-    // Hide search results if visible
+    // Hide other content sections
+    welcomeScreen.style.display = 'none';
     searchResults.style.display = 'none';
-    contentArea.style.display = 'block';
     
-    // Update topic dropdown selection if it exists
-    const dropdown = document.getElementById('topic-dropdown');
-    if (dropdown.style.display !== 'none') {
-        dropdown.value = topicId;
-    }
+    // Display topic view
+    topicView.style.display = 'block';
     
     // Display topic content
     topicContent.innerHTML = `
@@ -140,6 +152,16 @@ function createSubtopicCard(subtopic) {
     card.appendChild(description);
     
     card.addEventListener('click', function() {
+        // Update topic item selection in the sidebar if it exists
+        const topicItem = document.querySelector(`.topic-item[data-id="${subtopic.id}"]`);
+        if (topicItem) {
+            document.querySelectorAll('.topic-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            topicItem.classList.add('active');
+        }
+        
+        // Show the topic details
         showTopicDetails(subtopic.id);
     });
     
@@ -161,12 +183,17 @@ function performSearch() {
 
 // Display search results
 function displaySearchResults(results) {
-    const contentArea = document.getElementById('content-area');
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const topicView = document.getElementById('topic-view');
     const searchResults = document.getElementById('search-results');
     const resultsContainer = document.getElementById('results-container');
     const noResults = document.getElementById('no-results');
     
-    contentArea.style.display = 'none';
+    // Hide other content sections
+    welcomeScreen.style.display = 'none';
+    topicView.style.display = 'none';
+    
+    // Display search results
     searchResults.style.display = 'block';
     resultsContainer.innerHTML = '';
     
@@ -247,12 +274,6 @@ function setupEventListeners() {
         if (event.key === 'Enter') {
             performSearch();
         }
-    });
-    
-    // Back from search button
-    document.getElementById('back-from-search-button').addEventListener('click', function() {
-        document.getElementById('search-results').style.display = 'none';
-        document.getElementById('content-area').style.display = 'block';
     });
     
     // About button

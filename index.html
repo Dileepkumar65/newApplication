@@ -9,49 +9,56 @@
 <body>
     <header>
         <h1>Computer Science Learning Guide</h1>
-        <h2>From Hardware to Software</h2>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Search topics...">
+            <button id="search-button">Search</button>
+        </div>
     </header>
 
-    <div id="search-container">
-        <input type="text" id="search-input" placeholder="Search topics...">
-        <button id="search-button">Search</button>
-    </div>
-
-    <div class="container">
-        <!-- Sidebar navigation -->
-        <div id="sidebar">
-            <div id="sidebar-modules">
-                <!-- Main modules will be loaded here dynamically -->
+    <div class="app-container">
+        <!-- Left Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>Main Modules</h3>
+                <div id="modules-list">
+                    <!-- Modules will be loaded here -->
+                </div>
             </div>
-            <div class="sidebar-footer">
-                <button id="web-scraper-button">Web Scraper</button>
-                <button id="about-button">About</button>
+            
+            <div class="sidebar-section" id="topics-section" style="display: none;">
+                <h3>Topics</h3>
+                <div id="topics-list">
+                    <!-- Topics will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="sidebar-tools">
+                <button id="web-scraper-button" class="sidebar-button">Web Scraper</button>
+                <button id="about-button" class="sidebar-button">About</button>
             </div>
         </div>
 
-        <!-- Main content area -->
-        <div id="main-content">
-            <div id="topic-dropdown-container">
-                <select id="topic-dropdown" style="display: none;">
-                    <!-- Topics dropdown will be populated dynamically -->
-                </select>
+        <!-- Main Content Area -->
+        <div class="content">
+            <div id="welcome-screen">
+                <h2>Welcome to CS Learning Guide</h2>
+                <p>Select a module from the sidebar to begin exploring computer science topics.</p>
+                <p>From hardware components to programming languages, operating systems to AI - explore the complete range of computer science knowledge.</p>
             </div>
-
-            <!-- Content area for the selected topic -->
-            <div id="content-area">
-                <div id="topic-content">
-                    <!-- Selected topic content will be displayed here -->
-                </div>
+            
+            <!-- Topic Details View -->
+            <div id="topic-view" style="display: none;">
+                <div id="topic-content"></div>
+                
                 <div id="subtopics-section">
                     <h3>Related Topics</h3>
                     <div id="subtopics-container"></div>
                 </div>
             </div>
-
-            <!-- Search results area -->
+            
+            <!-- Search Results -->
             <div id="search-results" style="display: none;">
-                <button id="back-from-search-button">← Back</button>
-                <h3>Search Results</h3>
+                <h2>Search Results</h2>
                 <div id="results-container"></div>
                 <p id="no-results" style="display: none;">No results found. Try a different search term.</p>
             </div>
