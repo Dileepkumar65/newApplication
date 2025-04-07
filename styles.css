@@ -105,9 +105,25 @@ body {
     height: calc(100vh - 60px);
     position: fixed;
     overflow-y: auto;
+    overflow-x: hidden;
     transition: all 0.3s ease;
-    padding: 20px 0;
+    padding: 20px 0 100px 0; /* Added extra bottom padding */
     z-index: 900;
+    scrollbar-width: thin; /* For Firefox */
+}
+
+/* For WebKit browsers like Chrome/Safari */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 3px;
 }
 
 .sidebar-header {
@@ -381,7 +397,7 @@ body {
     
     .sidebar.active {
         width: 260px;
-        padding: 20px 0;
+        padding: 20px 0 100px 0;
     }
     
     .main-content {
