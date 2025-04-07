@@ -20,14 +20,13 @@ function loadMainModules() {
     
     // Add each module to the sidebar
     modules.forEach(module => {
-        const moduleItem = document.createElement('div');
-        moduleItem.className = 'nav-item';
+        const moduleItem = document.createElement('li');
         moduleItem.setAttribute('data-id', module.id);
         moduleItem.textContent = module.title;
         
         moduleItem.addEventListener('click', function() {
             // Mark this module as active
-            document.querySelectorAll('.nav-item').forEach(item => {
+            document.querySelectorAll('.module-list li').forEach(item => {
                 item.classList.remove('active');
             });
             this.classList.add('active');
@@ -40,7 +39,7 @@ function loadMainModules() {
             if (topics.length > 0) {
                 // Mark the first topic as active
                 setTimeout(() => {
-                    const firstTopicItem = document.querySelector(`.topic-item[data-id="${topics[0].id}"]`);
+                    const firstTopicItem = document.querySelector(`.topic-list li[data-id="${topics[0].id}"]`);
                     if (firstTopicItem) {
                         firstTopicItem.classList.add('active');
                     }
@@ -66,14 +65,13 @@ function loadModuleTopics(moduleId) {
     
     // Add each topic to the sidebar
     topics.forEach(topic => {
-        const topicItem = document.createElement('div');
-        topicItem.className = 'topic-item';
+        const topicItem = document.createElement('li');
         topicItem.setAttribute('data-id', topic.id);
         topicItem.textContent = topic.title;
         
         topicItem.addEventListener('click', function() {
             // Mark this topic as active
-            document.querySelectorAll('.topic-item').forEach(item => {
+            document.querySelectorAll('.topic-list li').forEach(item => {
                 item.classList.remove('active');
             });
             this.classList.add('active');
@@ -153,9 +151,9 @@ function createSubtopicCard(subtopic) {
     
     card.addEventListener('click', function() {
         // Update topic selection in the sidebar if it exists
-        const topicItem = document.querySelector(`.topic-item[data-id="${subtopic.id}"]`);
+        const topicItem = document.querySelector(`.topic-list li[data-id="${subtopic.id}"]`);
         if (topicItem) {
-            document.querySelectorAll('.topic-item').forEach(item => {
+            document.querySelectorAll('.topic-list li').forEach(item => {
                 item.classList.remove('active');
             });
             topicItem.classList.add('active');
@@ -222,6 +220,12 @@ function toggleWebScraperModal() {
     modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
 }
 
+// Toggle sidebar on mobile
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('active');
+}
+
 // Handle web scraping
 async function handleWebScraping(event) {
     event.preventDefault();
@@ -265,6 +269,9 @@ async function handleWebScraping(event) {
 // Setup event listeners
 function setupEventListeners() {
     console.log("Setting up event listeners");
+    
+    // Menu toggle for mobile
+    document.getElementById('menu-toggle').addEventListener('click', toggleSidebar);
     
     // Search button
     document.getElementById('search-button').addEventListener('click', performSearch);
