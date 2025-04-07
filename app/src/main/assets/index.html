@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Learning Guide</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Computer Science Learning Guide</h1>
+        <h2>From Hardware to Software</h2>
+    </header>
+
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search topics...">
+        <button id="search-button">Search</button>
+    </div>
+
+    <div id="main-content">
+        <div id="topics-container">
+            <!-- Topics will be loaded here dynamically -->
+        </div>
+
+        <div id="topic-details" style="display: none;">
+            <button id="back-button">← Back to Topics</button>
+            <div id="topic-content"></div>
+            <h3>Related Topics</h3>
+            <div id="subtopics-container"></div>
+        </div>
+
+        <div id="search-results" style="display: none;">
+            <button id="back-from-search-button">← Back to Topics</button>
+            <h3>Search Results</h3>
+            <div id="results-container"></div>
+            <p id="no-results" style="display: none;">No results found. Try a different search term.</p>
+        </div>
+    </div>
+
+    <footer>
+        <button id="about-button">About</button>
+    </footer>
+
+    <div id="about-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>About CS Learning Guide</h2>
+            <div id="about-content">
+                <p>CS Learning Guide is a comprehensive educational resource covering computer science topics from hardware to software.</p>
+                <p>Developed by: Dileep Kumar Singu</p>
+                <p>Version: 1.0</p>
+                <p>© 2025 All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
