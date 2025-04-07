@@ -48,6 +48,28 @@
                 </ul>
             </div>
             
+            <!-- Roadmaps Section -->
+            <div class="sidebar-section">
+                <h4 class="sidebar-title">Build-From-Scratch Roadmaps</h4>
+                <ul class="roadmaps-list" id="roadmaps-list">
+                    <li class="sidebar-tool" id="os-roadmap-button">
+                        <i class="fas fa-server"></i> Build an Operating System
+                    </li>
+                    <li class="sidebar-tool" id="compiler-roadmap-button">
+                        <i class="fas fa-code"></i> Build a Compiler
+                    </li>
+                    <li class="sidebar-tool" id="ai-roadmap-button">
+                        <i class="fas fa-robot"></i> Build an AI System
+                    </li>
+                    <li class="sidebar-tool" id="network-roadmap-button">
+                        <i class="fas fa-network-wired"></i> Build a Network Stack
+                    </li>
+                    <li class="sidebar-tool" id="database-roadmap-button">
+                        <i class="fas fa-database"></i> Build a Database
+                    </li>
+                </ul>
+            </div>
+            
             <!-- Tools Section -->
             <div class="sidebar-section">
                 <h4 class="sidebar-title">Tools</h4>
@@ -106,6 +128,11 @@
                 <div id="results-container" class="results-container"></div>
                 <p id="no-results" class="no-results" style="display: none;">No results found. Try a different search term.</p>
             </div>
+            
+            <!-- Roadmap View -->
+            <div id="roadmap-view" class="content-section" style="display: none;">
+                <div id="roadmap-content" class="topic-content"></div>
+            </div>
         </div>
     </div>
 
@@ -137,6 +164,47 @@
                 <h3>Scraped Content</h3>
                 <div id="scraped-content"></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Roadmap Modals -->
+    <div id="os-roadmap-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Build Your Own Operating System: From Transistors to User Space</h2>
+            <div id="os-roadmap-content"></div>
+        </div>
+    </div>
+
+    <div id="compiler-roadmap-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Build Your Own Compiler: From Binary to High-Level Languages</h2>
+            <div id="compiler-roadmap-content"></div>
+        </div>
+    </div>
+
+    <div id="ai-roadmap-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Build Your Own AI System: From Boolean Logic to Neural Networks</h2>
+            <div id="ai-roadmap-content"></div>
+        </div>
+    </div>
+
+    <div id="network-roadmap-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Build Your Own Network Stack: From Electrical Signals to Protocols</h2>
+            <div id="network-roadmap-content"></div>
+        </div>
+    </div>
+
+    <div id="database-roadmap-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Build Your Own Database: From Storage Media to Query Engines</h2>
+            <div id="database-roadmap-content"></div>
         </div>
     </div>
 

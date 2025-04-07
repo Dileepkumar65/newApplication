@@ -446,6 +446,50 @@ body {
     margin-bottom: 20px;
 }
 
+/* Roadmap Styles */
+.roadmap-section {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.roadmap-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.roadmap-section ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.roadmap-section li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.roadmap-section li strong {
+    color: var(--text-color);
+}
+
+.roadmap-section li ul {
+    margin-top: 8px;
+}
+
+.roadmap-section li ul li {
+    margin-bottom: 5px;
+}
+
+.roadmaps-list li:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
@@ -463,4 +507,59 @@ body {
     .main-content {
         margin-left: 0;
     }
+}
+
+/* Roadmap Styles */
+.roadmap-section {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 25px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.roadmap-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.roadmap-section ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.roadmap-section li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.roadmap-section li strong {
+    color: var(--text-color);
+}
+
+.roadmap-section li ul {
+    margin-top: 8px;
+}
+
+.roadmap-section li ul li {
+    margin-bottom: 5px;
+}
+
+.roadmaps-list li:hover {
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+/* Modal sizing for roadmaps */
+#os-roadmap-modal .modal-content,
+#compiler-roadmap-modal .modal-content,
+#ai-roadmap-modal .modal-content,
+#network-roadmap-modal .modal-content,
+#database-roadmap-modal .modal-content {
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
 }
