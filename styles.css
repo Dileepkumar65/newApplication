@@ -109,21 +109,24 @@ body {
     transition: all 0.3s ease;
     padding: 20px 0 100px 0; /* Added extra bottom padding */
     z-index: 900;
-    scrollbar-width: thin; /* For Firefox */
+    display: block; /* Force display */
 }
 
-/* For WebKit browsers like Chrome/Safari */
+/* Always show scrollbar to prevent layout shifts */
 .sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: var(--sidebar-bg);
+    width: 8px;
+    height: 8px;
+    background-color: #f5f5f5;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 3px;
+    background-color: #dadada;
+    border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    border-radius: 4px;
 }
 
 .sidebar-header {
@@ -175,6 +178,62 @@ body {
 .sidebar-tool i {
     margin-right: 10px;
     color: var(--primary-color);
+}
+
+/* Topic completion indicators */
+.completion-indicator {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 8px;
+    color: #999;
+}
+
+.completion-indicator.completed {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.completion-indicator-card {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.completion-indicator-card.completed {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Topic completion checkbox */
+.topic-completed-checkbox {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(48, 141, 70, 0.05);
+    border-radius: 5px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
 }
 
 /* Main Content Styles */
@@ -398,6 +457,7 @@ body {
     .sidebar.active {
         width: 260px;
         padding: 20px 0 100px 0;
+        overflow-y: auto;
     }
     
     .main-content {

@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the app by setting up event handlers and loading content
     setupEventListeners();
     loadMainModules();
+    
+    // Force the sidebar to be visible on larger screens
+    if (window.innerWidth > 768) {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.add('active');
+    }
 });
 
 // Load main modules in the sidebar
@@ -45,8 +51,13 @@ function loadMainModules() {
                     }
                 }, 50);
                 
-                // Show topic details
+                // Show topic details and check if we need to collapse the sidebar
                 showTopicDetails(topics[0].id);
+                
+                // Collapse sidebar for first topic view if not completed and on mobile
+                if (window.innerWidth <= 768 && !topics[0].completed) {
+                    toggleSidebar();
+                }
             }
         });
         
@@ -67,7 +78,13 @@ function loadModuleTopics(moduleId) {
     topics.forEach(topic => {
         const topicItem = document.createElement('li');
         topicItem.setAttribute('data-id', topic.id);
-        topicItem.textContent = topic.title;
+        
+        // Create the topic item with completed status indicator if needed
+        if (topic.completed) {
+            topicItem.innerHTML = `<span class="completion-indicator completed">✓</span> ${topic.title}`;
+        } else {
+            topicItem.innerHTML = `<span class="completion-indicator">○</span> ${topic.title}`;
+        }
         
         topicItem.addEventListener('click', function() {
             // Mark this topic as active
@@ -107,11 +124,43 @@ function showTopicDetails(topicId) {
     // Display topic view
     topicView.style.display = 'block';
     
-    // Display topic content
+    // Create completed checkbox
+    const completedCheckbox = document.createElement('div');
+    completedCheckbox.className = 'topic-completed-checkbox';
+    completedCheckbox.innerHTML = `
+        <label class="checkbox-container">
+            <input type="checkbox" id="topic-completed" ${topic.completed ? 'checked' : ''}>
+            <span class="checkmark"></span>
+            Mark as completed
+        </label>
+    `;
+    
+    // Display topic content with completion checkbox
     topicContent.innerHTML = `
         <h2>${topic.title}</h2>
         <p>${topic.content}</p>
     `;
+    topicContent.appendChild(completedCheckbox);
+    
+    // Add event listener to the checkbox
+    document.getElementById('topic-completed').addEventListener('change', function() {
+        markTopicAsCompleted(topicId, this.checked);
+        
+        // Update the topic item in the sidebar
+        const topicItem = document.querySelector(`.topic-list li[data-id="${topicId}"]`);
+        if (topicItem) {
+            const indicator = topicItem.querySelector('.completion-indicator');
+            if (indicator) {
+                if (this.checked) {
+                    indicator.textContent = '✓';
+                    indicator.classList.add('completed');
+                } else {
+                    indicator.textContent = '○';
+                    indicator.classList.remove('completed');
+                }
+            }
+        }
+    });
     
     // Load subtopics
     loadSubtopics(topicId);
@@ -143,9 +192,15 @@ function createSubtopicCard(subtopic) {
     card.className = 'subtopic-card';
     card.setAttribute('data-id', subtopic.id);
     
+    // Show completion status on card if applicable
+    let completionIndicator = '';
+    if (subtopic.completed) {
+        completionIndicator = '<span class="completion-indicator-card completed">✓</span>';
+    }
+    
     const title = document.createElement('div');
     title.className = 'subtopic-title';
-    title.textContent = subtopic.title;
+    title.innerHTML = `${completionIndicator} ${subtopic.title}`;
     
     const description = document.createElement('div');
     description.className = 'subtopic-description';
@@ -322,4 +377,12 @@ function setupEventListeners() {
     
     // Web scraper form submission
     document.getElementById('scraper-form').addEventListener('submit', handleWebScraping);
+    
+    // Make sure sidebar is shown on desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('active');
+        }
+    });
 }
