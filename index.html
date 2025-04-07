@@ -7,67 +7,80 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Computer Science Learning Guide</h1>
-        <div id="search-container">
-            <input type="text" id="search-input" placeholder="Search topics...">
-            <button id="search-button">Search</button>
-        </div>
-    </header>
-
     <div class="app-container">
-        <!-- Left Sidebar Navigation -->
-        <div class="sidebar">
-            <div class="sidebar-inner">
-                <div class="sidebar-section">
-                    <h3>Main Modules</h3>
-                    <div id="modules-list">
+        <!-- Side Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>CS Learning Guide</h1>
+            </div>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search topics...">
+                <button id="search-button">Search</button>
+            </div>
+            
+            <!-- Navigation Items -->
+            <div class="sidebar-nav">
+                <!-- Main Modules Section -->
+                <div class="nav-section">
+                    <h3 class="nav-heading">MODULES</h3>
+                    <div id="modules-list" class="nav-items">
                         <!-- Modules will be loaded here -->
                     </div>
                 </div>
                 
-                <div class="sidebar-section" id="topics-section" style="display: none;">
-                    <h3>Topics</h3>
-                    <div id="topics-list">
+                <!-- Topics Section (will be shown when a module is selected) -->
+                <div class="nav-section" id="topics-section" style="display: none;">
+                    <h3 class="nav-heading">TOPICS</h3>
+                    <div id="topics-list" class="nav-items">
                         <!-- Topics will be loaded here -->
                     </div>
                 </div>
                 
-                <!-- Spacer to push buttons to bottom -->
-                <div style="flex-grow: 1;"></div>
-                
-                <div class="sidebar-tools">
-                    <button id="web-scraper-button" class="sidebar-button">Web Scraper</button>
-                    <button id="about-button" class="sidebar-button">About</button>
+                <!-- Tools Section -->
+                <div class="nav-section nav-tools">
+                    <h3 class="nav-heading">TOOLS</h3>
+                    <div class="nav-items">
+                        <div class="nav-item" id="web-scraper-button">
+                            <span class="icon">🔍</span>
+                            <span>Web Scraper</span>
+                        </div>
+                        <div class="nav-item" id="about-button">
+                            <span class="icon">ℹ️</span>
+                            <span>About</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
 
         <!-- Main Content Area -->
-        <div class="content">
-            <div id="welcome-screen">
+        <main class="content">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="content-section">
                 <h2>Welcome to CS Learning Guide</h2>
                 <p>Select a module from the sidebar to begin exploring computer science topics.</p>
                 <p>From hardware components to programming languages, operating systems to AI - explore the complete range of computer science knowledge.</p>
             </div>
             
             <!-- Topic Details View -->
-            <div id="topic-view" style="display: none;">
+            <div id="topic-view" class="content-section" style="display: none;">
                 <div id="topic-content"></div>
                 
                 <div id="subtopics-section">
                     <h3>Related Topics</h3>
-                    <div id="subtopics-container"></div>
+                    <div id="subtopics-container" class="cards-grid"></div>
                 </div>
             </div>
             
             <!-- Search Results -->
-            <div id="search-results" style="display: none;">
+            <div id="search-results" class="content-section" style="display: none;">
                 <h2>Search Results</h2>
-                <div id="results-container"></div>
+                <div id="results-container" class="cards-grid"></div>
                 <p id="no-results" style="display: none;">No results found. Try a different search term.</p>
             </div>
-        </div>
+        </main>
     </div>
 
     <!-- About Modal -->

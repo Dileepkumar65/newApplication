@@ -21,18 +21,18 @@ function loadMainModules() {
     // Add each module to the sidebar
     modules.forEach(module => {
         const moduleItem = document.createElement('div');
-        moduleItem.className = 'sidebar-item';
+        moduleItem.className = 'nav-item';
         moduleItem.setAttribute('data-id', module.id);
         moduleItem.textContent = module.title;
         
         moduleItem.addEventListener('click', function() {
-            // Mark the clicked module as active and deactivate others
-            document.querySelectorAll('.sidebar-item').forEach(el => {
-                el.classList.remove('active');
+            // Mark this module as active
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
             });
             this.classList.add('active');
             
-            // Load and display topics for this module
+            // Load topics for this module
             loadModuleTopics(module.id);
             
             // Show the first topic automatically
@@ -46,7 +46,7 @@ function loadMainModules() {
                     }
                 }, 50);
                 
-                // Show the topic content
+                // Show topic details
                 showTopicDetails(topics[0].id);
             }
         });
@@ -55,7 +55,7 @@ function loadMainModules() {
     });
 }
 
-// Load topics for the selected module in the sidebar
+// Load topics for the selected module
 function loadModuleTopics(moduleId) {
     const topics = getTopicsByParentId(moduleId);
     const topicsList = document.getElementById('topics-list');
@@ -72,13 +72,13 @@ function loadModuleTopics(moduleId) {
         topicItem.textContent = topic.title;
         
         topicItem.addEventListener('click', function() {
-            // Mark the clicked topic as active and deactivate others
-            document.querySelectorAll('.topic-item').forEach(el => {
-                el.classList.remove('active');
+            // Mark this topic as active
+            document.querySelectorAll('.topic-item').forEach(item => {
+                item.classList.remove('active');
             });
             this.classList.add('active');
             
-            // Show the topic details
+            // Show topic details
             showTopicDetails(topic.id);
         });
         
@@ -89,7 +89,7 @@ function loadModuleTopics(moduleId) {
     topicsSection.style.display = 'block';
 }
 
-// Display topic details in the main content area
+// Display the details of a topic
 function showTopicDetails(topicId) {
     const topic = getTopicById(topicId);
     const welcomeScreen = document.getElementById('welcome-screen');
@@ -110,11 +110,11 @@ function showTopicDetails(topicId) {
         <p>${topic.content}</p>
     `;
     
-    // Load related subtopics
+    // Load subtopics
     loadSubtopics(topicId);
 }
 
-// Load subtopics for a parent topic
+// Load subtopics for a selected topic
 function loadSubtopics(parentId) {
     const subtopics = getTopicsByParentId(parentId);
     const subtopicsContainer = document.getElementById('subtopics-container');
@@ -152,11 +152,11 @@ function createSubtopicCard(subtopic) {
     card.appendChild(description);
     
     card.addEventListener('click', function() {
-        // Update topic item selection in the sidebar if it exists
+        // Update topic selection in the sidebar if it exists
         const topicItem = document.querySelector(`.topic-item[data-id="${subtopic.id}"]`);
         if (topicItem) {
-            document.querySelectorAll('.topic-item').forEach(el => {
-                el.classList.remove('active');
+            document.querySelectorAll('.topic-item').forEach(item => {
+                item.classList.remove('active');
             });
             topicItem.classList.add('active');
         }
@@ -168,7 +168,7 @@ function createSubtopicCard(subtopic) {
     return card;
 }
 
-// Perform search
+// Perform a search
 function performSearch() {
     const searchInput = document.getElementById('search-input');
     const query = searchInput.value.trim();
@@ -291,8 +291,15 @@ function setupEventListeners() {
     
     // Close modals when clicking outside
     window.addEventListener('click', function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
+        const aboutModal = document.getElementById('about-modal');
+        const webScraperModal = document.getElementById('web-scraper-modal');
+        
+        if (event.target === aboutModal) {
+            aboutModal.style.display = 'none';
+        }
+        
+        if (event.target === webScraperModal) {
+            webScraperModal.style.display = 'none';
         }
     });
     
