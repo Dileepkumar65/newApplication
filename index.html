@@ -17,30 +17,48 @@
         <button id="search-button">Search</button>
     </div>
 
-    <div id="main-content">
-        <div id="topics-container">
-            <!-- Topics will be loaded here dynamically -->
+    <div class="container">
+        <!-- Sidebar navigation -->
+        <div id="sidebar">
+            <div id="sidebar-modules">
+                <!-- Main modules will be loaded here dynamically -->
+            </div>
+            <div class="sidebar-footer">
+                <button id="web-scraper-button">Web Scraper</button>
+                <button id="about-button">About</button>
+            </div>
         </div>
 
-        <div id="topic-details" style="display: none;">
-            <button id="back-button">← Back to Topics</button>
-            <div id="topic-content"></div>
-            <h3>Related Topics</h3>
-            <div id="subtopics-container"></div>
-        </div>
+        <!-- Main content area -->
+        <div id="main-content">
+            <div id="topic-dropdown-container">
+                <select id="topic-dropdown" style="display: none;">
+                    <!-- Topics dropdown will be populated dynamically -->
+                </select>
+            </div>
 
-        <div id="search-results" style="display: none;">
-            <button id="back-from-search-button">← Back to Topics</button>
-            <h3>Search Results</h3>
-            <div id="results-container"></div>
-            <p id="no-results" style="display: none;">No results found. Try a different search term.</p>
+            <!-- Content area for the selected topic -->
+            <div id="content-area">
+                <div id="topic-content">
+                    <!-- Selected topic content will be displayed here -->
+                </div>
+                <div id="subtopics-section">
+                    <h3>Related Topics</h3>
+                    <div id="subtopics-container"></div>
+                </div>
+            </div>
+
+            <!-- Search results area -->
+            <div id="search-results" style="display: none;">
+                <button id="back-from-search-button">← Back</button>
+                <h3>Search Results</h3>
+                <div id="results-container"></div>
+                <p id="no-results" style="display: none;">No results found. Try a different search term.</p>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <button id="about-button">About</button>
-    </footer>
-
+    <!-- About Modal -->
     <div id="about-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -50,6 +68,23 @@
                 <p>Developed by: Dileep Kumar Singu</p>
                 <p>Version: 1.0</p>
                 <p>© 2025 All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web Scraper Modal -->
+    <div id="web-scraper-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Web Scraper</h2>
+            <p>Enter a URL to scrape information about a computer science topic:</p>
+            <form id="scraper-form">
+                <input type="text" id="url-input" placeholder="Enter URL..." required>
+                <button type="submit">Scrape Content</button>
+            </form>
+            <div id="scraper-results" style="display: none;">
+                <h3>Scraped Content</h3>
+                <div id="scraped-content"></div>
             </div>
         </div>
     </div>

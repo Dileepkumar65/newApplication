@@ -1,34 +1,44 @@
-import http.server
-import socketserver
+from flask import Flask, request, jsonify, send_from_directory
 import os
+import traceback
+import trafilatura
 
-PORT = 5000
-DIRECTORY = "web_app"
+app = Flask(__name__)
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
+# Serve static files
+@app.route('/', defaults={'path': 'index.html'})
+@app.route('/<path:path>')
+def serve_file(path):
+    return send_from_directory('.', path)
 
-def run_server():
-    with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
-        print(f"Server running at http://0.0.0.0:{PORT}/")
-        try:
-            httpd.serve_forever()
-        except KeyboardInterrupt:
-            print("Server stopped by user")
-
-if __name__ == "__main__":
-    # Ensure we serve index.html for the root path
-    if not os.path.exists(os.path.join(DIRECTORY, "index.html")):
-        print(f"Warning: {os.path.join(DIRECTORY, 'index.html')} not found")
-    
-    # Create symbolic links to root directory files to access them from web_app
+# Web scraper API endpoint
+@app.route('/scrape', methods=['POST'])
+def scrape_url():
     try:
-        for file in ["data.js", "app.js", "styles.css"]:
-            if os.path.exists(file) and not os.path.exists(os.path.join(DIRECTORY, file)):
-                os.symlink(f"../{file}", os.path.join(DIRECTORY, file))
-                print(f"Created symlink for {file}")
-    except Exception as e:
-        print(f"Error creating symlinks: {e}")
+        data = request.json
+        url = data.get('url')
+        
+        if not url:
+            return jsonify({'error': 'URL is required'}), 400
+        
+        # Fetch and extract content from the URL
+        downloaded = trafilatura.fetch_url(url)
+        
+        if not downloaded:
+            return jsonify({'error': 'Failed to download content from URL'}), 400
+        
+        # Extract main content using trafilatura
+        content = trafilatura.extract(downloaded)
+        
+        if not content:
+            return jsonify({'error': 'No content could be extracted from the URL'}), 400
+        
+        return jsonify({'content': content})
     
-    run_server()
+    except Exception as e:
+        print(f"Error in scrape_url: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
