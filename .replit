@@ -1,0 +1,52 @@
+modules = ["java"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Android App Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "android_app"
+
+[[workflows.workflow]]
+name = "Android App Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./gradlew :app:assembleDebug && cd app/build/outputs/apk/debug && python3 -m http.server 5000"
+waitForPort = 5000
+
+[[workflows.workflow]]
+name = "android_app"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd /home/runner && ./gradlew installDebug && adb shell am start -n com.cslearningguide/.MainActivity"
+
+[deployment]
+run = ["sh", "-c", "./gradlew :app:assembleDebug && cd app/build/outputs/apk/debug && python3 -m http.server 5000"]

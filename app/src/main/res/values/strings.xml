@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CS Learning Guide</string>
+    <string name="about_title">About</string>
+    <string name="search_title">Search</string>
+    <string name="app_subtitle">From Hardware to Software</string>
+    <string name="developer_name">Dileep Kumar Singu</string>
+    <string name="search_hint">Search topics...</string>
+    <string name="no_search_results">No results found</string>
+    <string name="enter_search_term">Enter at least 3 characters to search</string>
+    <string name="related_topics">Related Topics</string>
+</resources>
