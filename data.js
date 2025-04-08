@@ -66,7 +66,7 @@ const topics = [
         id: 'security',
         title: 'Computer Security',
         description: 'Protecting computer systems and data',
-        content: 'Computer Security focuses on protecting computing systems, networks, and data from unauthorized access and attacks. It's an increasingly critical aspect of our connected world.',
+        content: 'Computer Security focuses on protecting computing systems, networks, and data from unauthorized access and attacks. It\'s an increasingly critical aspect of our connected world.',
         parentId: null
     },
     
@@ -276,7 +276,7 @@ const topics = [
         description: 'How code is translated into machine instructions',
         content: 'Compilers and interpreters are tools that translate human-readable programming code into instructions that computers can execute. Compilers generate executable files, while interpreters execute code line by line.',
         parentId: 'programming'
-    },
+    }
     
     // More topics and subtopics can be added here
 ];
