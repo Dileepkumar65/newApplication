@@ -876,11 +876,17 @@ function setupEventListeners() {
         }
     });
     
-    // About button
+    // About buttons (both in sidebar and navbar)
     document.getElementById('about-button').addEventListener('click', toggleAboutModal);
+    if (document.getElementById('about-nav-button')) {
+        document.getElementById('about-nav-button').addEventListener('click', toggleAboutModal);
+    }
     
-    // Web scraper button
+    // Web scraper buttons (both in sidebar and navbar)
     document.getElementById('web-scraper-button').addEventListener('click', toggleWebScraperModal);
+    if (document.getElementById('web-scraper-nav-button')) {
+        document.getElementById('web-scraper-nav-button').addEventListener('click', toggleWebScraperModal);
+    }
     
     // Roadmap buttons
     document.getElementById('os-roadmap-button').addEventListener('click', function() {
