@@ -113,8 +113,9 @@ body {
     border: none;
     color: var(--white);
     padding: 5px;
-    width: 180px;
+    width: 0;
     outline: none;
+    transition: width 0.3s ease, display 0.3s ease;
 }
 
 #search-input::placeholder {

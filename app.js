@@ -866,13 +866,44 @@ function setupEventListeners() {
     // Menu toggle for mobile
     document.getElementById('menu-toggle').addEventListener('click', toggleSidebar);
     
-    // Search button
-    document.getElementById('search-button').addEventListener('click', performSearch);
+    // Search functionality
+    let searchOpen = false;
+    document.getElementById('search-button').addEventListener('click', function() {
+        const searchInput = document.getElementById('search-input');
+        if (!searchOpen) {
+            // Open search
+            searchInput.style.display = 'block';
+            searchInput.style.width = '180px';
+            searchInput.focus();
+            searchOpen = true;
+        } else {
+            // If input has text, perform search, otherwise close search
+            if (searchInput.value.trim() !== '') {
+                performSearch();
+            } else {
+                searchInput.style.display = 'none';
+                searchInput.style.width = '0';
+                searchOpen = false;
+            }
+        }
+    });
     
     // Enter key in search input
     document.getElementById('search-input').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             performSearch();
+        }
+    });
+    
+    // Close search when clicking elsewhere
+    document.addEventListener('click', function(event) {
+        const searchBox = document.getElementById('search-box');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        if (!searchBox.contains(event.target) && searchOpen && event.target !== searchButton) {
+            searchInput.style.display = 'none';
+            searchInput.style.width = '0';
+            searchOpen = false;
         }
     });
     
