@@ -295,6 +295,41 @@ const topics = [
         content: 'Cybersecurity is the practice of protecting systems, networks, and programs from digital attacks. Our "Build from Scratch" approach means implementing security mechanisms yourself, understanding the mathematical foundations of cryptography, and learning to think like both defenders and attackers. Rather than just using existing security tools, you\'ll gain the knowledge to design secure systems from the ground up and evaluate the security of any digital system.',
         parentId: null
     },
+    {
+        id: 'crypto_fundamentals',
+        title: 'Cryptographic Fundamentals',
+        description: 'Mathematical foundations of secure communication',
+        content: 'Cryptography provides the mathematical tools to secure digital information and communications. This topic covers the fundamental concepts and algorithms that enable secure systems. You\'ll learn about number theory, modular arithmetic, and information theory that form the foundation of cryptography. We\'ll implement classical ciphers (substitution, transposition) and modern symmetric algorithms (AES) from scratch, understanding their mathematical properties and security guarantees. Rather than using existing cryptographic libraries, you\'ll build your own implementations, gaining insight into how security primitives work at a fundamental level and why they\'re secure against various attacks.',
+        parentId: 'security'
+    },
+    {
+        id: 'public_key_crypto',
+        title: 'Public Key Cryptography',
+        description: 'Building asymmetric encryption systems',
+        content: 'Public key cryptography enables secure communication without a shared secret key. This topic covers the mathematics and algorithms of asymmetric encryption. You\'ll implement essential public key systems like RSA and elliptic curve cryptography from scratch, building on number theory principles such as modular exponentiation and the difficulty of factoring large numbers. We\'ll develop digital signature algorithms and key exchange protocols, understanding their security properties. Rather than using existing libraries, you\'ll build these systems yourself, gaining deep insight into the mathematical foundations that enable secure internet communication, from HTTPS to cryptocurrency.',
+        parentId: 'security'
+    },
+    {
+        id: 'secure_systems',
+        title: 'Secure Systems Design',
+        description: 'Building systems with security from the ground up',
+        content: 'Secure systems design applies security principles throughout the architecture and implementation of software and hardware. This topic covers methodologies for creating systems that are secure by design, not as an afterthought. You\'ll learn about threat modeling, principle of least privilege, defense in depth, and secure coding practices. We\'ll implement security mechanisms like access control systems, authentication frameworks, and secure communication channels from scratch. Rather than using existing solutions, you\'ll build your own security controls, developing a deep understanding of how to translate security requirements into concrete implementations that protect against real-world threats.',
+        parentId: 'security'
+    },
+    {
+        id: 'security_analysis',
+        title: 'Security Analysis & Penetration Testing',
+        description: 'Finding and exploiting vulnerabilities',
+        content: 'Security analysis examines systems to identify and address vulnerabilities before they can be exploited. This topic covers techniques for analyzing systems from an attacker\'s perspective. You\'ll learn about common vulnerability classes (buffer overflows, SQL injection, XSS) and how to find them through static analysis, fuzzing, and penetration testing. We\'ll implement our own analysis tools from scratch, including simple static analyzers and fuzzers. Rather than using existing security scanners, you\'ll develop your own testing methodologies and tools, gaining insight into how attackers think and how to build more resilient systems that can withstand sophisticated attacks.',
+        parentId: 'security'
+    },
+    {
+        id: 'network_security',
+        title: 'Network Security',
+        description: 'Protecting communications and network infrastructure',
+        content: 'Network security focuses on protecting data in transit and securing network infrastructure. This topic explores threats to networks and the mechanisms to defend against them. You\'ll learn about secure protocols, firewalls, intrusion detection systems, and virtual private networks. We\'ll implement our own network security tools from scratch, including packet filters, simple intrusion detection systems, and VPN protocols based on the cryptographic primitives you\'ve already built. Rather than using existing security appliances or software, you\'ll develop your own network security solutions, gaining deep insight into how attacks propagate through networks and how defenses can be structured to prevent unauthorized access and protect data confidentiality and integrity.',
+        parentId: 'security'
+    },
     
     // AI & Machine Learning
     {
@@ -303,6 +338,41 @@ const topics = [
         description: 'Building intelligent systems from mathematical foundations',
         content: 'Artificial Intelligence enables machines to simulate human intelligence, while Machine Learning allows systems to learn from data without explicit programming. Our "Build from Scratch" approach means implementing AI algorithms and ML models yourself, starting from their mathematical foundations. Rather than using existing frameworks and libraries, you\'ll gain the knowledge to design, train, and evaluate intelligent systems from first principles.',
         parentId: null
+    },
+    {
+        id: 'ml_fundamentals',
+        title: 'Machine Learning Fundamentals',
+        description: 'Mathematical foundations of learning from data',
+        content: 'Machine learning fundamentals establish the mathematical and statistical principles that enable computers to learn from data. This topic covers the core concepts and techniques that form the basis of ML. You\'ll learn about linear algebra, probability theory, and optimization methods essential for machine learning. We\'ll implement fundamental algorithms from scratch, including linear regression, logistic regression, and k-means clustering, understanding their mathematical derivations and properties. Rather than using existing ML libraries, you\'ll build your own implementations, developing a deep understanding of how learning algorithms extract patterns from data and make predictions or decisions based on those patterns.',
+        parentId: 'ai_ml'
+    },
+    {
+        id: 'neural_networks',
+        title: 'Neural Networks From Scratch',
+        description: 'Building brain-inspired learning systems',
+        content: 'Neural networks are computational models inspired by the human brain that can learn complex patterns from data. This topic explores the mathematics, architecture, and training of neural networks. You\'ll implement feed-forward networks from scratch, starting with neurons as simple computational units and building up to multi-layer networks. We\'ll develop backpropagation and gradient descent algorithms to train these networks, understanding their mathematical foundations. Rather than using existing frameworks like TensorFlow or PyTorch, you\'ll build your own neural network library, gaining insight into every aspect of how these powerful models learn and make predictions.',
+        parentId: 'ai_ml'
+    },
+    {
+        id: 'deep_learning',
+        title: 'Deep Learning Architectures',
+        description: 'Advanced neural network structures and algorithms',
+        content: 'Deep learning extends neural networks with advanced architectures that can learn highly complex patterns. This topic covers specialized network structures for different types of data and problems. You\'ll implement convolutional neural networks (CNNs) for image processing, recurrent neural networks (RNNs) and transformers for sequential data, and generative adversarial networks (GANs) for generating new content. We\'ll build these architectures from scratch, understanding their mathematical foundations and training algorithms. Rather than using existing deep learning libraries, you\'ll implement your own versions of these cutting-edge models, developing insight into how they achieve state-of-the-art performance on complex tasks like image recognition, natural language processing, and content generation.',
+        parentId: 'ai_ml'
+    },
+    {
+        id: 'reinforcement_learning',
+        title: 'Reinforcement Learning',
+        description: 'Building systems that learn through interaction',
+        content: 'Reinforcement learning is a paradigm where agents learn to make decisions by interacting with an environment. This topic explores how systems can learn optimal behavior through trial, error, and reward. You\'ll implement fundamental RL algorithms from scratch, including dynamic programming methods, Monte Carlo methods, and temporal-difference learning (Q-learning). We\'ll develop more advanced techniques like policy gradients and deep Q-networks, understanding their mathematical foundations. Rather than using existing RL libraries, you\'ll build your own implementations, gaining insight into how agents can learn complex behaviors without explicit programming, from game playing to robotic control to resource allocation.',
+        parentId: 'ai_ml'
+    },
+    {
+        id: 'ml_systems',
+        title: 'Machine Learning Systems',
+        description: 'Building complete ML pipelines and applications',
+        content: 'Machine learning systems integrate ML models into larger software systems to solve real-world problems. This topic explores the architecture and engineering of complete ML applications. You\'ll learn about data pipelines, feature engineering, model selection, evaluation metrics, and deployment strategies. We\'ll implement a complete ML system from scratch, from data collection and preprocessing to model training, evaluation, and serving. Rather than using existing ML platforms, you\'ll build your own infrastructure for managing the ML lifecycle, gaining insight into the challenges and solutions for creating reliable, scalable, and maintainable intelligent systems that can operate in production environments.',
+        parentId: 'ai_ml'
     },
     
     // Theory of Computation
@@ -313,6 +383,41 @@ const topics = [
         content: 'Theory of Computation is the mathematical study of the capabilities and limitations of computing systems. Our "Build from Scratch" approach means learning the formal models and mathematical proofs that define computation, then implementing these models yourself. This deep theoretical understanding provides insight into what can and cannot be computed, and forms the foundation for practical algorithm design and analysis.',
         parentId: null
     },
+    {
+        id: 'automata_theory',
+        title: 'Automata Theory',
+        description: 'Formal models of computation',
+        content: 'Automata theory studies abstract mathematical models of computation. This topic explores different classes of automata and their computational power. You\'ll learn about finite automata, pushdown automata, and Turing machines, understanding their formal definitions and properties. We\'ll implement these models from scratch, building simulators that can execute automata on given inputs and determine whether they accept or reject. Rather than using existing libraries, you\'ll develop your own representations and algorithms for these fundamental computational models, gaining insight into the theoretical foundation of what computers can and cannot compute and how computational problems can be classified based on the simplest machine that can solve them.',
+        parentId: 'theory'
+    },
+    {
+        id: 'formal_languages',
+        title: 'Formal Languages & Grammars',
+        description: 'Mathematical systems for describing languages',
+        content: 'Formal languages and grammars provide mathematical frameworks for defining sets of strings (languages) and the rules that generate them. This topic explores the Chomsky hierarchy of grammars and their corresponding automata. You\'ll learn about regular grammars, context-free grammars, context-sensitive grammars, and unrestricted grammars. We\'ll implement parsers and generators for these grammar types from scratch, understanding their computational properties. Rather than using existing parsing tools, you\'ll build your own implementations of regular expressions, context-free parsers, and other language processing tools, gaining insight into the theoretical foundation of programming languages, compilers, and text processing systems.',
+        parentId: 'theory'
+    },
+    {
+        id: 'computability',
+        title: 'Computability Theory',
+        description: 'The limits of what can be computed',
+        content: 'Computability theory investigates which problems can be solved algorithmically and which cannot. This topic explores the boundary between computability and non-computability. You\'ll learn about the Church-Turing thesis, decidable and undecidable problems, reductions, and the halting problem. We\'ll implement simulations of Universal Turing Machines from scratch, demonstrating their ability to compute any computable function. Rather than accepting computability results as abstract concepts, you\'ll develop concrete implementations that illustrate these fundamental limits, gaining insight into why certain problems cannot be solved by any algorithm regardless of computational resources, with implications for program verification, automated reasoning, and artificial intelligence.',
+        parentId: 'theory'
+    },
+    {
+        id: 'complexity_theory',
+        title: 'Complexity Theory',
+        description: 'Measuring and classifying computational efficiency',
+        content: 'Complexity theory studies the resources (time, space) required to solve computational problems. This topic explores how to classify problems based on their inherent difficulty. You\'ll learn about complexity classes (P, NP, NP-complete, PSPACE), reduction techniques, and the relationships between different classes. We\'ll implement algorithms for classic problems in various complexity classes from scratch, understanding their time and space requirements. Rather than treating complexity results as theoretical abstractions, you\'ll develop concrete implementations that demonstrate why some problems are fundamentally harder than others, gaining insight into the P vs. NP question and its implications for algorithm design, cryptography, and optimization.',
+        parentId: 'theory'
+    },
+    {
+        id: 'information_theory_cs',
+        title: 'Information Theory & Coding',
+        description: 'Mathematical foundations of data compression and transmission',
+        content: 'Information theory quantifies the amount of information in data and establishes fundamental limits on data compression and transmission. This topic explores the mathematical principles that govern how information can be efficiently represented and communicated. You\'ll learn about entropy, mutual information, channel capacity, and error-correcting codes. We\'ll implement compression algorithms and error-correction schemes from scratch, understanding their theoretical foundations. Rather than using existing libraries, you\'ll build your own implementations of Huffman coding, Hamming codes, and other information-theoretic algorithms, gaining insight into the fundamental limits of data storage and communication and how systems can approach these theoretical limits in practice.',
+        parentId: 'theory'
+    },
     
     // Software Engineering
     {
@@ -321,6 +426,41 @@ const topics = [
         description: 'Building quality software systems from first principles',
         content: 'Software Engineering is the systematic application of engineering approaches to software development. Our "Build from Scratch" approach means designing and implementing software systems yourself, understanding every component rather than relying on existing frameworks. You\'ll learn methodologies for building reliable, maintainable, and efficient software, with an emphasis on understanding why certain practices work rather than just following established processes.',
         parentId: null
+    },
+    {
+        id: 'system_design',
+        title: 'System Architecture & Design',
+        description: 'Designing software systems from first principles',
+        content: 'System architecture and design establish the overall structure and behavior of software systems. This topic explores methodologies for designing complex software from first principles. You\'ll learn about architectural patterns (layered, microservices, event-driven), design principles (SOLID, DRY, KISS), and modeling techniques. We\'ll implement architectural patterns from scratch, building simple but functional systems that demonstrate each approach. Rather than using existing frameworks that enforce specific architectures, you\'ll develop your own implementations, gaining insight into the tradeoffs between different architectural choices and how to design systems that meet both functional and non-functional requirements while remaining flexible enough to evolve over time.',
+        parentId: 'software_eng'
+    },
+    {
+        id: 'software_construction',
+        title: 'Software Construction',
+        description: 'Building robust software components and systems',
+        content: 'Software construction covers the practical techniques for implementing reliable, maintainable code. This topic explores how to turn designs into working software through thoughtful construction practices. You\'ll learn about code organization, defensive programming, error handling, and program correctness. We\'ll implement common design patterns and programming idioms from scratch, understanding their benefits and appropriate use. Rather than relying on existing implementations or frameworks, you\'ll build your own versions of these patterns, gaining insight into how well-structured code supports maintainability, reliability, and efficiency. This approach emphasizes understanding why certain practices lead to better software, not just following conventions.',
+        parentId: 'software_eng'
+    },
+    {
+        id: 'testing_verification',
+        title: 'Testing & Verification',
+        description: 'Ensuring software correctness systematically',
+        content: 'Testing and verification provide systematic approaches to ensuring that software behaves as expected. This topic explores different techniques for validating software behavior. You\'ll learn about unit testing, integration testing, system testing, and formal verification methods. We\'ll implement testing frameworks and verification tools from scratch, understanding their theoretical foundations. Rather than using existing testing libraries, you\'ll build your own test runners, assertion mechanisms, mocking frameworks, and simple formal verification tools. This approach provides deep insight into how testing and verification can discover different kinds of defects, the tradeoffs between different approaches, and how to design software that is inherently more testable and verifiable.',
+        parentId: 'software_eng'
+    },
+    {
+        id: 'performance_engineering',
+        title: 'Performance Engineering',
+        description: 'Building efficient software through measurement and optimization',
+        content: 'Performance engineering focuses on making software systems faster, more efficient, and more scalable. This topic explores methodologies for understanding and improving system performance. You\'ll learn about profiling, benchmarking, bottleneck analysis, and optimization techniques. We\'ll implement performance measurement tools from scratch, developing profilers, memory analyzers, and benchmarking frameworks. Rather than using existing performance tools, you\'ll build your own instruments for understanding where time and resources are spent in a system. This approach provides deep insight into how algorithms, data structures, and system interactions affect performance, and how to make principled optimizations that improve efficiency without sacrificing maintainability.',
+        parentId: 'software_eng'
+    },
+    {
+        id: 'software_processes',
+        title: 'Software Development Processes',
+        description: 'Methodologies for effective software development',
+        content: 'Software development processes provide structured approaches to building software in teams. This topic explores different methodologies for organizing software development activities. You\'ll learn about various process models (waterfall, iterative, agile) and practices (version control, code reviews, continuous integration). We\'ll implement simple tools that support these processes from scratch, including basic version control systems and continuous integration pipelines. Rather than just following established processes or using existing tools, you\'ll develop your own implementations, gaining insight into why certain approaches are effective for different kinds of projects and teams. This understanding allows you to adapt processes to specific contexts rather than applying them dogmatically.',
+        parentId: 'software_eng'
     }
 ];
 
