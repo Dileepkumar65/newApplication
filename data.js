@@ -1,19 +1,29 @@
 // Define our topics data structure
 const topics = [
+    // Main categories
     {
-        id: 'cs_foundations',
+        id: 'main_modules',
         title: 'Main Modules',
-        description: 'Basic concepts and foundations of computer science',
+        description: 'Main computer science modules',
         content: 'Navigate through the main computer science modules',
         parentId: null
     },
     {
         id: 'build_from_scratch_roadmaps',
         title: 'Build-From-Scratch Roadmaps',
-        description: 'Detailed guides for building various systems from first principles',
+        description: 'Learn how to build systems from the ground up',
         content: 'Learn how to build complex computer systems from the ground up without relying on high-level abstractions.',
         parentId: null
     },
+    {
+        id: 'tools',
+        title: 'Tools',
+        description: 'Learning tools',
+        content: 'Tools to enhance your learning experience.',
+        parentId: null
+    },
+    
+    // Roadmaps
     {
         id: 'os_roadmap',
         title: 'Build an Operating System',
@@ -54,13 +64,8 @@ const topics = [
         parentId: 'build_from_scratch_roadmaps',
         icon: 'fas fa-database'
     },
-    {
-        id: 'tools',
-        title: 'Tools',
-        description: 'Tools to help with learning',
-        content: 'Tools to enhance your learning experience.',
-        parentId: null
-    },
+    
+    // Tools
     {
         id: 'web_scraper',
         title: 'Web Scraper',
