@@ -1,15 +1,24 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, make_response
 import os
 import traceback
 import trafilatura
+import time
 
 app = Flask(__name__)
 
-# Serve static files
+# Serve static files with cache busting
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path:path>')
 def serve_file(path):
-    return send_from_directory('.', path)
+    response = make_response(send_from_directory('.', path))
+    # Disable caching for JavaScript files
+    if path.endswith('.js') or path.endswith('.css'):
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        # Add timestamp as query param to bypass cache
+        response.headers['Content-Type'] = 'application/javascript' if path.endswith('.js') else 'text/css'
+    return response
 
 # Web scraper API endpoint
 @app.route('/scrape', methods=['POST'])
