@@ -68,6 +68,7 @@ function loadMainModules() {
 // Load topics for the selected module
 function loadModuleTopics(moduleId) {
     const topics = getTopicsByParentId(moduleId);
+    console.log(`Loading topics for module ${moduleId}:`, topics);
     const topicsList = document.getElementById('topics-list');
     const topicsSection = document.getElementById('topics-section');
     

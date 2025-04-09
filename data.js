@@ -466,7 +466,10 @@ const topics = [
 
 // Helper functions to work with topics
 function getTopicsByParentId(parentId) {
-    return topics.filter(topic => topic.parentId === parentId);
+    console.log(`getTopicsByParentId called with parentId: ${parentId}`);
+    const result = topics.filter(topic => topic.parentId === parentId);
+    console.log(`Found ${result.length} topics with parentId ${parentId}:`, result);
+    return result;
 }
 
 function getTopicById(id) {
