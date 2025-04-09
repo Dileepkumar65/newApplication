@@ -93,6 +93,21 @@ body {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Circular button styling */
+.circular-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circular-button i {
+    margin: 0;
+}
+
 #search-input {
     background: transparent;
     border: none;
