@@ -6,7 +6,7 @@ import trafilatura
 app = Flask(__name__)
 
 # Serve static files
-@app.route('/', defaults={'path': 'index.html'})
+@app.route('/', defaults={'path': 'simple_app.html'})
 @app.route('/<path:path>')
 def serve_file(path):
     return send_from_directory('.', path)

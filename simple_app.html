@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Learning Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .menu-icon {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box {
+            display: flex;
+            margin-right: 15px;
+        }
+        
+        .search-box input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-box button {
+            background-color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            padding: 8px;
+        }
+        
+        .round-button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar {
+            background-color: #f8f8f8;
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: 0.3s;
+            z-index: 900;
+        }
+        
+        .sidebar h2 {
+            color: #333;
+            padding: 10px 15px;
+            margin: 0;
+            background-color: #e9e9e9;
+        }
+        
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e1e1e1;
+            cursor: pointer;
+        }
+        
+        .sidebar li:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .sidebar li.active {
+            background-color: #d4edda;
+        }
+        
+        .sidebar .icon {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            margin-left: 250px;
+            margin-top: 64px;
+            padding: 20px;
+        }
+        
+        .content-header {
+            margin-bottom: 20px;
+        }
+        
+        .content-header h1 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .content-header p {
+            margin: 10px 0 0;
+            color: #666;
+        }
+        
+        .content-body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                left: -250px;
+            }
+            
+            .sidebar.active {
+                left: 0;
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="logo">CS Learning Guide</div>
+        </div>
+        <div class="navbar-right">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search topics...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="navbar-buttons">
+                <button id="about-button" class="round-button" title="About"><i class="fas fa-info-circle"></i></button>
+                <button id="web-scraper-button" class="round-button" title="Web Scraper"><i class="fas fa-globe"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h2>Course Navigation</h2>
+        <ul>
+            <li class="main-category" data-id="main_modules">Main Modules</li>
+            <li class="main-category" data-id="build_from_scratch">Build-From-Scratch Roadmaps</li>
+            <li class="main-category" data-id="tools">Tools</li>
+        </ul>
+        
+        <h2>Topics</h2>
+        <ul id="topics-list">
+            <li class="category-header">Build-From-Scratch Roadmaps</li>
+            <li class="topic" data-id="os_roadmap"><i class="fas fa-server icon"></i> Build an Operating System</li>
+            <li class="topic" data-id="compiler_roadmap"><i class="fas fa-code icon"></i> Build a Compiler</li>
+            <li class="topic" data-id="ai_roadmap"><i class="fas fa-robot icon"></i> Build an AI System</li>
+            <li class="topic" data-id="network_roadmap"><i class="fas fa-network-wired icon"></i> Build a Network Stack</li>
+            <li class="topic" data-id="database_roadmap"><i class="fas fa-database icon"></i> Build a Database</li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content" id="content">
+        <div class="content-header">
+            <h1>Welcome to the CS Learning Guide</h1>
+            <p>Your comprehensive guide to mastering computer science from first principles</p>
+        </div>
+        <div class="content-body">
+            <p>Select a topic from the sidebar to begin learning.</p>
+            <p>This guide takes a unique "build from scratch" approach that teaches you how to create computational tools from first principles, without relying on high-level abstractions.</p>
+            <p>By the end, you'll understand computers from the transistor level all the way up to complex applications.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM fully loaded and parsed");
+            
+            // Initialize the app by setting up event handlers
+            setupEventListeners();
+            
+            // Force the sidebar to be visible on larger screens
+            if (window.innerWidth > 768) {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.add('active');
+            }
+        });
+
+        function setupEventListeners() {
+            console.log("Setting up event listeners");
+            
+            // Toggle sidebar on menu icon click
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('active');
+            });
+            
+            // Main category click handlers
+            document.querySelectorAll('.main-category').forEach(item => {
+                item.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-id');
+                    console.log("Category clicked:", categoryId);
+                    
+                    // Highlight the selected category
+                    document.querySelectorAll('.main-category').forEach(cat => {
+                        cat.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Update content based on the selected category
+                    updateContent(categoryId);
+                });
+            });
+            
+            // Topic click handlers
+            document.querySelectorAll('.topic').forEach(item => {
+                item.addEventListener('click', function() {
+                    const topicId = this.getAttribute('data-id');
+                    console.log("Topic clicked:", topicId);
+                    
+                    // Highlight the selected topic
+                    document.querySelectorAll('.topic').forEach(topic => {
+                        topic.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Update content based on the selected topic
+                    updateTopicContent(topicId);
+                });
+            });
+            
+            // Search button handler
+            document.getElementById('search-button').addEventListener('click', performSearch);
+            
+            // Search input enter key handler
+            document.getElementById('search-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // About button handler
+            document.getElementById('about-button').addEventListener('click', showAbout);
+            
+            // Web scraper button handler
+            document.getElementById('web-scraper-button').addEventListener('click', showWebScraper);
+        }
+
+        function updateContent(categoryId) {
+            const contentHeader = document.querySelector('.content-header');
+            const contentBody = document.querySelector('.content-body');
+            
+            switch(categoryId) {
+                case 'main_modules':
+                    contentHeader.innerHTML = '<h1>Main Modules</h1><p>Core computer science concepts and foundations</p>';
+                    contentBody.innerHTML = '<p>Explore the fundamental modules of computer science, from low-level hardware concepts to high-level programming paradigms.</p>';
+                    break;
+                case 'build_from_scratch':
+                    contentHeader.innerHTML = '<h1>Build-From-Scratch Roadmaps</h1><p>Learn to build complex systems from first principles</p>';
+                    contentBody.innerHTML = '<p>These roadmaps provide step-by-step guides to building various computer systems from the ground up, without relying on high-level abstractions.</p><p>Select a roadmap from the sidebar to begin your journey.</p>';
+                    break;
+                case 'tools':
+                    contentHeader.innerHTML = '<h1>Tools</h1><p>Resources to enhance your learning</p>';
+                    contentBody.innerHTML = '<p>These tools will help you in your learning journey:</p><ul><li><strong>Web Scraper</strong>: Find and analyze content from across the web</li><li><strong>About</strong>: Learn more about this application</li></ul>';
+                    break;
+            }
+        }
+
+        function updateTopicContent(topicId) {
+            const contentHeader = document.querySelector('.content-header');
+            const contentBody = document.querySelector('.content-body');
+            
+            switch(topicId) {
+                case 'os_roadmap':
+                    contentHeader.innerHTML = '<h1>Build an Operating System</h1><p>From bare metal to a functional OS</p>';
+                    contentBody.innerHTML = '<p>Learn how to build a fully functional operating system from the ground up, including:</p><ul><li>Memory management</li><li>Process scheduling</li><li>File systems</li><li>Device drivers</li><li>User interfaces</li></ul>';
+                    break;
+                case 'compiler_roadmap':
+                    contentHeader.innerHTML = '<h1>Build a Compiler</h1><p>From text to executable code</p>';
+                    contentBody.innerHTML = '<p>Learn the techniques for building a compiler, including:</p><ul><li>Lexical analysis</li><li>Parsing</li><li>Semantic analysis</li><li>Optimization</li><li>Code generation</li></ul>';
+                    break;
+                case 'ai_roadmap':
+                    contentHeader.innerHTML = '<h1>Build an AI System</h1><p>From mathematics to machine learning</p>';
+                    contentBody.innerHTML = '<p>Understand how to create your own artificial intelligence systems from first principles, covering:</p><ul><li>Neural networks</li><li>Machine learning algorithms</li><li>Natural language processing</li><li>Computer vision</li><li>Reinforcement learning</li></ul>';
+                    break;
+                case 'network_roadmap':
+                    contentHeader.innerHTML = '<h1>Build a Network Stack</h1><p>From physical signals to protocols</p>';
+                    contentBody.innerHTML = '<p>Create a complete networking stack from the physical layer to the application layer, including:</p><ul><li>Physical layer communications</li><li>Data link protocols</li><li>Network addressing</li><li>Routing algorithms</li><li>Transport protocols</li><li>Application-level protocols</li></ul>';
+                    break;
+                case 'database_roadmap':
+                    contentHeader.innerHTML = '<h1>Build a Database</h1><p>From storage to queries</p>';
+                    contentBody.innerHTML = '<p>Design and implement your own database system, including:</p><ul><li>Storage engines</li><li>Query processors</li><li>Indexing mechanisms</li><li>Transaction management</li><li>ACID guarantees</li></ul>';
+                    break;
+            }
+        }
+
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim();
+            
+            if (query === '') {
+                return;
+            }
+            
+            console.log("Performing search for:", query);
+            
+            // Simple mock search implementation
+            const results = mockSearchResults(query);
+            
+            // Display search results
+            displaySearchResults(results);
+        }
+
+        function mockSearchResults(query) {
+            query = query.toLowerCase();
+            
+            // Mock search data
+            const searchableContent = [
+                { id: 'os_roadmap', title: 'Build an Operating System', content: 'operating system kernel process memory file' },
+                { id: 'compiler_roadmap', title: 'Build a Compiler', content: 'compiler parser lexer syntax semantics code generation' },
+                { id: 'ai_roadmap', title: 'Build an AI System', content: 'artificial intelligence neural network machine learning' },
+                { id: 'network_roadmap', title: 'Build a Network Stack', content: 'network protocol tcp ip routing packets' },
+                { id: 'database_roadmap', title: 'Build a Database', content: 'database sql storage query index transaction' }
+            ];
+            
+            // Filter content that matches the query
+            return searchableContent.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.content.toLowerCase().includes(query)
+            );
+        }
+
+        function displaySearchResults(results) {
+            const contentHeader = document.querySelector('.content-header');
+            const contentBody = document.querySelector('.content-body');
+            
+            contentHeader.innerHTML = '<h1>Search Results</h1>';
+            
+            if (results.length === 0) {
+                contentBody.innerHTML = '<p>No results found. Try a different search term.</p>';
+                return;
+            }
+            
+            let resultsHtml = '<ul class="search-results">';
+            
+            results.forEach(result => {
+                resultsHtml += `
+                    <li>
+                        <h3>${result.title}</h3>
+                        <button class="view-result-btn" data-id="${result.id}">View</button>
+                    </li>
+                `;
+            });
+            
+            resultsHtml += '</ul>';
+            
+            contentBody.innerHTML = resultsHtml;
+            
+            // Add event listeners to the view buttons
+            document.querySelectorAll('.view-result-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const topicId = this.getAttribute('data-id');
+                    
+                    // Highlight the corresponding topic in the sidebar
+                    document.querySelectorAll('.topic').forEach(topic => {
+                        if (topic.getAttribute('data-id') === topicId) {
+                            topic.classList.add('active');
+                        } else {
+                            topic.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update content
+                    updateTopicContent(topicId);
+                });
+            });
+        }
+
+        function showAbout() {
+            const contentHeader = document.querySelector('.content-header');
+            const contentBody = document.querySelector('.content-body');
+            
+            contentHeader.innerHTML = '<h1>About CS Learning Guide</h1>';
+            contentBody.innerHTML = `
+                <p>The CS Learning Guide is a comprehensive educational platform designed to teach computer science from first principles.</p>
+                <p>Unlike many resources that rely on high-level abstractions and existing tools, this guide emphasizes building components from scratch to provide a deep understanding of how computer systems work at every level.</p>
+                <p>From transistors and logic gates to operating systems and applications, our goal is to help you master the entire computing stack.</p>
+                <h2>Features</h2>
+                <ul>
+                    <li>Build-from-scratch roadmaps</li>
+                    <li>Comprehensive coverage from hardware to software</li>
+                    <li>Interactive learning modules</li>
+                    <li>Web scraping tool for research</li>
+                </ul>
+            `;
+        }
+
+        function showWebScraper() {
+            const contentHeader = document.querySelector('.content-header');
+            const contentBody = document.querySelector('.content-body');
+            
+            contentHeader.innerHTML = '<h1>Web Scraper</h1><p>Find and analyze content from across the web</p>';
+            contentBody.innerHTML = `
+                <div class="web-scraper-form">
+                    <p>Enter a URL to scrape content from a website:</p>
+                    <div class="input-group">
+                        <input type="text" id="url-input" placeholder="https://example.com">
+                        <button id="scrape-button">Scrape</button>
+                    </div>
+                    <div id="scrape-results" class="scrape-results" style="display: none;">
+                        <h3>Results</h3>
+                        <div id="results-content"></div>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listener to the scrape button
+            document.getElementById('scrape-button').addEventListener('click', function() {
+                const url = document.getElementById('url-input').value.trim();
+                
+                if (url === '') {
+                    alert('Please enter a valid URL');
+                    return;
+                }
+                
+                console.log("Scraping URL:", url);
+                
+                // Show loading message
+                const resultsDiv = document.getElementById('scrape-results');
+                const resultsContent = document.getElementById('results-content');
+                
+                resultsDiv.style.display = 'block';
+                resultsContent.innerHTML = '<p>Scraping in progress... Please wait.</p>';
+                
+                // Call our backend scraper API
+                fetch('/scrape', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        resultsContent.innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                    } else {
+                        resultsContent.innerHTML = `
+                            <p>Content scraped from ${url}:</p>
+                            <div class="scraped-content">
+                                ${data.content}
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    resultsContent.innerHTML = `<p class="error">Failed to scrape content: ${error.message}</p>`;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
