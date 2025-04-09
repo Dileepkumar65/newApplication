@@ -67,8 +67,8 @@ body {
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    padding: 5px 10px;
+    border-radius: 20px;
+    padding: 3px 3px 3px 10px;
 }
 
 .navbar-tools {
@@ -122,10 +122,12 @@ body {
 }
 
 #search-button {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
     color: var(--white);
     cursor: pointer;
+    width: 36px;
+    height: 36px;
 }
 
 /* Main Container */
