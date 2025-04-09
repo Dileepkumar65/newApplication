@@ -246,6 +246,23 @@ function performSearch() {
     displaySearchResults(results);
 }
 
+// Perform search from modal
+function performSearchFromModal() {
+    const searchInput = document.getElementById('search-modal-input');
+    const query = searchInput.value.trim();
+    
+    if (query === '') {
+        return;
+    }
+    
+    const results = searchTopics(query);
+    
+    // Hide the modal
+    document.getElementById('search-modal').style.display = 'none';
+    
+    displaySearchResults(results);
+}
+
 // Display search results
 function displaySearchResults(results) {
     const welcomeScreen = document.getElementById('welcome-screen');
@@ -866,44 +883,21 @@ function setupEventListeners() {
     // Menu toggle for mobile
     document.getElementById('menu-toggle').addEventListener('click', toggleSidebar);
     
-    // Search functionality
-    let searchOpen = false;
+    // Search functionality - Open search modal
     document.getElementById('search-button').addEventListener('click', function() {
-        const searchInput = document.getElementById('search-input');
-        if (!searchOpen) {
-            // Open search
-            searchInput.style.display = 'block';
-            searchInput.style.width = '180px';
-            searchInput.focus();
-            searchOpen = true;
-        } else {
-            // If input has text, perform search, otherwise close search
-            if (searchInput.value.trim() !== '') {
-                performSearch();
-            } else {
-                searchInput.style.display = 'none';
-                searchInput.style.width = '0';
-                searchOpen = false;
-            }
-        }
+        document.getElementById('search-modal').style.display = 'flex';
+        document.getElementById('search-modal-input').focus();
     });
     
-    // Enter key in search input
-    document.getElementById('search-input').addEventListener('keypress', function(event) {
+    // Search modal search button
+    document.getElementById('search-modal-button').addEventListener('click', function() {
+        performSearchFromModal();
+    });
+    
+    // Enter key in search modal input
+    document.getElementById('search-modal-input').addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
-            performSearch();
-        }
-    });
-    
-    // Close search when clicking elsewhere
-    document.addEventListener('click', function(event) {
-        const searchBox = document.getElementById('search-box');
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
-        if (!searchBox.contains(event.target) && searchOpen && event.target !== searchButton) {
-            searchInput.style.display = 'none';
-            searchInput.style.width = '0';
-            searchOpen = false;
+            performSearchFromModal();
         }
     });
     
@@ -945,6 +939,7 @@ function setupEventListeners() {
     window.addEventListener('click', function(event) {
         const aboutModal = document.getElementById('about-modal');
         const webScraperModal = document.getElementById('web-scraper-modal');
+        const searchModal = document.getElementById('search-modal');
         const osRoadmapModal = document.getElementById('os-roadmap-modal');
         const compilerRoadmapModal = document.getElementById('compiler-roadmap-modal');
         const aiRoadmapModal = document.getElementById('ai-roadmap-modal');
@@ -957,6 +952,10 @@ function setupEventListeners() {
         
         if (event.target === webScraperModal) {
             webScraperModal.style.display = 'none';
+        }
+        
+        if (event.target === searchModal) {
+            searchModal.style.display = 'none';
         }
         
         if (event.target === osRoadmapModal) {

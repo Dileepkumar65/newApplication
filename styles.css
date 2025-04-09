@@ -66,9 +66,32 @@ body {
 .search-box {
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 3px 3px 3px 10px;
+}
+
+.search-modal-input {
+    display: flex;
+    margin: 20px 0;
+}
+
+#search-modal-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#search-modal-button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-modal-button:hover {
+    background-color: var(--secondary-color);
 }
 
 .navbar-tools {
@@ -127,8 +150,6 @@ body {
     border: none;
     color: var(--white);
     cursor: pointer;
-    width: 36px;
-    height: 36px;
 }
 
 /* Main Container */

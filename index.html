@@ -18,7 +18,7 @@
         </div>
         <div class="navbar-right">
             <div class="search-box" id="search-box">
-                <input type="text" id="search-input" placeholder="Search topics..." style="display: none; width: 0;">
+                <input type="text" id="search-input" placeholder="Search topics..." style="display: none;">
                 <button id="search-button" class="circular-button"><i class="fas fa-search"></i></button>
             </div>
             <div class="navbar-tools">
@@ -120,6 +120,18 @@
                 <h1>Search Results</h1>
                 <div id="results-container" class="results-container"></div>
                 <p id="no-results" class="no-results" style="display: none;">No results found. Try a different search term.</p>
+            </div>
+            
+            <!-- Search Modal -->
+            <div id="search-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Search Topics</h2>
+                    <div class="search-modal-input">
+                        <input type="text" id="search-modal-input" placeholder="Enter search terms...">
+                        <button id="search-modal-button">Search</button>
+                    </div>
+                </div>
             </div>
             
             <!-- Roadmap View -->
