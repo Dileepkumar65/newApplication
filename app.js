@@ -141,7 +141,7 @@ function showTopicDetails(topicId) {
     // Display topic content with completion checkbox
     topicContent.innerHTML = `
         <h2>${topic.title}</h2>
-        <p>${topic.content}</p>
+        ${topic.content}
     `;
     topicContent.appendChild(completedCheckbox);
     
