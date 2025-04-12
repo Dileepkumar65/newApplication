@@ -1,3 +1,4 @@
+#This application is to be built as a Basic Version
 # CS Learning Guide Android App
 
 A comprehensive computer science learning guide Android application covering topics from hardware to software with organized educational content.
